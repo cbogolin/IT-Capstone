@@ -1,0 +1,64 @@
+{
+    "policies": [
+      {
+        "abbreviation": "FinInc",
+        "coefficient": 0.115509,
+        "formalName": "Banking Opportunities"
+      },
+      {
+        "abbreviation": "GPI",
+        "coefficient": 0.86034,
+        "formalName": "Gender Equality"
+      },
+      {
+        "abbreviation": "FemLit",
+        "coefficient": 0.485683,
+        "formalName": "Female Education"
+      },
+      {
+        "abbreviation": "lnChldMort",
+        "coefficient": -0.4847,
+        "formalName": "Child Health"
+      },
+      {
+        "abbreviation": "Waste",
+        "coefficient": -0.23017,
+        "formalName": "Food Security"
+      },
+      {
+        "abbreviation": "MSExpShr",
+        "coefficient": 0.278711,
+        "formalName": "International Economic Diversification"
+      },
+      {
+        "abbreviation": "lninflation",
+        "coefficient": -0.15713,
+        "formalName": "Price Stability"
+      },
+      {
+        "abbreviation": "Polity2",
+        "coefficient": 0.16736,
+        "formalName": "Democracy"
+      },
+      {
+        "abbreviation": "GINI",
+        "coefficient": -0.54142,
+        "formalName": "Distribution of Income"
+      },
+      {
+        "abbreviation": "MedPov",
+        "coefficient": -0.2937,
+        "formalName": "Fight against Poverty"
+      },
+      {
+        "abbreviation": "lnNRR",
+        "coefficient": 0.032271,
+        "formalName": "Environmental Sustainability"
+      },
+      {
+        "abbreviation": "ImpWat",
+        "coefficient": 1.20264,
+        "formalName": "Environmental Safety"
+      }
+    ]
+  }
