@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>ICAT Country</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+      <link rel="stylesheet" href="default.css">
+      <link rel="stylesheet" href="icat_css.css">
+   </head>
+   <body>
+      <div class="mainWrapper">
+         <!--Here is where all the navbar content goes (icat logo, social media links, and "select a country" dropdown)-->
+         <nav class="navbar">
+            <a class="navbar-brand" href="/">ICAT</a>
+            <p class="text-center">Socioeconomics Vulnerability Assessment</p>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">
+                    <img src="./images/facebook26.png" width=21 height=21 alt="Facebook">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <img src="./images/instagram3.png" width=21 height=21 alt="Instagram">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">
+                    <img src="./images/twitter15.png" width=21 height=21 alt="Twitter">
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <img src="./images/telephone65.png" width=21 height=21 alt="Phone">
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#">
+                      <img src="./images/envelope4.png" width=21 height=21 alt="Email">
+                    </a>
+                  </li>
+              </ul>
+          </nav>
+         <!--Here is where the map goes. Currently, it is only a placeholder for the actual heatmap that the sponsors are using-->
+         <div class="row">
+            <div class="col-md-3 sidebar">
+               <!--This is where the user can select with which measure they want to view the heatmap; currently I am using royalty-free icons from flaticon, but feel free to select different icons-->
+               <div id="chooseMeasureDiv">
+                  <div class="container">
+                     <div class="row" align="center">
+                        <div class="col-md-12 main-category">
+                          <img src="./images/globe.png" width=67 height=67 alt="Globe">
+                          <p>Total Conflict Vulnerability Score</p>
+                        </div>
+                        <!--Lack of financial development-->
+                        <div class="col-md-6 measure" id="FinInc" name="Lack of Financial Development" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of financial development; variable: financial inclusion; % age 15+">
+                           <img class="icon" src="./images/012-graphic.png" width=35 height=35 alt="Graph"><br>
+                           <p class="measureLabel">Lack of Financial Development</p>
+                        </div>
+                        <!--Lack of gender equality-->
+                        <div class="col-md-6 measure" id="GPI" name="Lack of Gender Equality" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of Gender Equality">
+                           <img class="icon" src="./images/011-gender.png" width=35 height=35 alt="Gender"><br>
+                           <p class="measureLabel">Lack of Gender Equality</p>
+                        </div>
+                     </div>
+                     <div class="row" align="center">
+                        <!--Lack of education-->
+                        <div class="col-md-6 measure" id="FemLit" name="Lack of Education" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of Education">
+                           <img class="icon" src="./images/010-book.png" width=35 height=35 alt="Books"><br>
+                           <p class="measureLabel education">Lack of Education</p>
+                        </div>
+                        <!--Lack of public health-->
+                        <div class="col-md-6 measure" id="lnChldMort" name="Lack of Public Health" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of public health">
+                           <img class="icon" src="./images/009-care.png" width=35 height=35 alt="Health"><br>
+                           <p class="measureLabel">Lack of Public Health</p>
+                        </div>
+                     </div>
+                     <div class="row" align="center">
+                        <!--Lack of food security-->
+                        <div class="col-md-6 measure" id="Waste" name="Lack of Food Security" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of food security">
+                           <img class="icon" src="./images/008-groceries.png" width=35 height=35 alt="Food"><br>
+                           <p class="measureLabel">Lack of Food Security</p>
+                        </div>
+                        <!--Lack of economic diversification-->
+                        <div class="col-md-6 measure" id="MSExpShr" name="Lack of Economic Diversification" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of economic diversification">
+                           <img class="icon" src="./images/007-deal.png" width=35 height=35 alt="Economics"><br>
+                           <p class="measureLabel">Lack of Economic Diversification</p>
+                        </div>
+                     </div>
+                     <div class="row" align="center">
+                        <!--Lack of Price Stability-->
+                        <div class="col-md-6 measure" id="lninflation" name="Lack of Price Stability" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of price stability">
+                           <img class="icon" src="./images/006-price-tag.png" width=35 height=35 alt="Prices"><br>
+                           <p class="measureLabel">Lack of Price Stability</p>
+                        </div>
+                        <!--Lack of Democracy-->
+                        <div class="col-md-6 measure" id="Polity2" name="Lack of Democracy" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of democracy">
+                           <img class="icon" src="./images/005-voting.png" width=35 height=35 alt="Voting"><br>
+                           <p class="measureLabel democracy">Lack of Democracy</p>
+                        </div>
+                     </div>
+                     <div class="row" align="center">
+                        <!--Lack of Equitable Economic Opportunities-->
+                        <div class="col-md-6 measure" id="GINI" name="Lack of Equitable Economic Opportunities" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of equitable economic Opportunities">
+                           <img class="icon" src="./images/004-opportunity.png" width=35 height=35 alt="Opportunities"><br>
+                           <p class="measureLabel">Lack of Equitable Economic Opportunities</p>
+                        </div>
+                        <!--Lack of Socioeconomic Development-->
+                        <div class="col-md-6 measure" id="MedPov" name="Lack of Socioeconomic Development" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of Socioeconomic development">
+                           <img class="icon" src="./images/003-people.png" width=35 height=35 alt="Development"><br>
+                           <p class="measureLabel">Lack of Socioeconomic Development</p>
+                        </div>
+                     </div>
+                     <div class="row" align="center">
+                        <!--Lack of Environmental Sustainability-->
+                        <div class="col-md-6 measure" id="lnNRR" name="Lack of Environmental Sustainability" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of Environmental Sustainability">
+                           <img class="icon" src="./images/002-world.png" width=35 height=35 alt="Sustainability"><br>
+                           <p class="measureLabel">Lack of Environmental Sustainability</p>
+                        </div>
+                        <!--Lack of Environmental Safety-->
+                        <div class="col-md-6 measure" id="ImpWat" name="Lack of Environmental Safety" data-toggle="tooltip" data-placement="top" title="Placeholder for description of lack of environmental safety">
+                           <img class="icon" src="./images/001-factory.png" width=35 height=35 alt="Safety"><br>
+                           <p class="measureLabel">Lack of Environmental Safety</p>
+                        </div>
+                     </div>
+                  </div>
+                  <!--End of Measures Div-->
+               </div>
+            </div>
+            <!--Second Column that holds the map-->
+            <div class="col-md-9">
+                <form class="form-inline">
+                    <select class="selectCountryDropdown ml-auto" name="">
+                      <option value="" disabled selected>Select a country</option>
+                    </select>
+                  </form>
+               <div class="mapSizerDiv">
+                  <div id="icatMap" align="center">
+                     <!--country map goes in here-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--Modal-->
+      <div id="myModal" class="modal">
+      <!--content within the modal-->
+      <div class="modal-content">
+      <!--OVERVIEW TAB-->
+      <ul class="nav nav-tabs">
+         <li class="active"><a href="#">Overview</a></li>
+         <li><a href="#">Policy Simulation</a></li>
+         <li><a href="#">Country Comparison</a></li>
+         <select class="selectCountryDropdown" name="">
+            <option value="" disabled selected>Select a country</option>
+         </select>
+      </ul>
+      <h1 class="countryName"  style="font-size:25px; text-align:center; font-weight:bold; padding:10px"></h1>
+      <span id="RegionLabel">
+         Region in
+         <p class="regionName"> </p>
+      </span>
+      <table>
+         <tr>
+            <th class="overviewHeader">Measures</th>
+            <th></th>
+            <th class="overviewHeader countryName">Country</th>
+            <th class="overviewHeader">Region</th>
+            <th class="overviewHeader">World</th>
+            <th class="overviewHeader">Income</th>
+         </tr>
+         <!--Access to Economic Capabilities-->
+         <tr style="background-color: #E2EFD9">
+            <td class="overviewCategoryDivider" rowspan="5">Access to Economic Capabilities</td>
+            <td>Lack of Financial Development</td>
+            <td id="FinInc1">#Country</td>
+            <td id="FinInc2">#Region</td>
+            <td id="wFinInc">#World</td>
+            <td id="iFinInc">#Income</td>
+         </tr>
+         <tr style="background-color: #E2EFD9">
+            <td>Lack of Gender Equality</td>
+            <td id="GPI1">#Country</td>
+            <td id="GPI2">#Region</td>
+            <td id="wGPI">#World</td>
+            <td id="iGPI">#Income</td>
+         </tr>
+         <tr style="background-color: #E2EFD9">
+            <td>Lack of Education</td>
+            <td id="FemLit1">#Country</td>
+            <td id="FemLit2">#Region</td>
+            <td id="wFemLit">#World</td>
+            <td id="iFemLit">#Income</td>
+         </tr>
+         <tr style="background-color: #E2EFD9">
+            <td>Lack of Public Health</td>
+            <td id="lnChldMort1">#Country</td>
+            <td id="lnChldMort2">#Region</td>
+            <td id="wlnChldMort">#World</td>
+            <td id="ilnChldMort">#Income</td>
+         </tr>
+         <tr style="background-color: #E2EFD9">
+            <td>Lack of Food Security</td>
+            <td id="Waste1">#Country</td>
+            <td id="Waste2">#Region</td>
+            <td id="wWaste">#World</td>
+            <td id="iWaste">#Income</td>
+         </tr>
+         <!--Competitive Economic Governance-->
+         <tr style="background-color: #C5E0B3">
+            <td class="overviewCategoryDivider" rowspan="3">Competitive Economic Governance</td>
+            <td>Lack of Economic Diversification</td>
+            <td id="MSExpShr1">#Country</td>
+            <td id="MSExpShr2">#Region</td>
+            <td id="wMSExpShr">#World</td>
+            <td id="iMSExpShr">#Income</td>
+         </tr>
+         <tr style="background-color: #C5E0B3">
+            <td>Lack of Price Stability</td>
+            <td id="lninflation1">#Country</td>
+            <td id="lninflation2">#Region</td>
+            <td id="wlninflation">#World</td>
+            <td id="ilninflation">#Income</td>
+         </tr>
+         <tr style="background-color: #C5E0B3">
+            <td>Lack of Democracy</td>
+            <td id="Polity2_1">#Country</td>
+            <td id="Polity2_2">#Region</td>
+            <td id="wPolity2">#World</td>
+            <td id="iPolity2">#Income</td>
+         </tr>
+         <!--Social Mobility-->
+         <tr style="background-color:#A8D08D">
+            <td class="overviewCategoryDivider" rowspan="2">Social Mobility </td>
+            <td>Lack of Equitable Economic Opportunities</td>
+            <td id="GINI1">#Country</td>
+            <td id="GINI2">#Region</td>
+            <td id="wGINI">#World</td>
+            <td id="iGINI">#Income</td>
+         </tr>
+         <tr style="background-color:#A8D08D">
+            <td>Lack of Socioeconomic Development</td>
+            <td id="MedPov1">#Country</td>
+            <td id="MedPov2">#Region</td>
+            <td id="wMedPov">#World</td>
+            <td id="iMedPov">#Income</td>
+         </tr>
+         <!--Environmental Sustainability-->
+         <tr style="background-color:#548135">
+            <td class="overviewCategoryDivider" rowspan="2">Environmental Sustainability</td>
+            <td>Lack of Environmental Sustainability</td>
+            <td id="lnNRR1">#Country</td>
+            <td id="lnNRR2">#Region</td>
+            <td id="wlnNRR">#World</td>
+            <td id="ilnNRR">#Income</td>
+         </tr>
+         <tr style="background-color:#548135">
+            <td>Lack of Environmental Safety</td>
+            <td id="ImpWat1">#Country</td>
+            <td id="ImpWat2">#Region</td>
+            <td id="wImpWat">#World</td>
+            <td id="iImpWat">#Income</td>
+         </tr>
+      </table>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script>
+         //Not strictly necessary, but this redraws the map as you scale the page (uses JQuery)
+         $(window).resize(function() {
+           drawRegionsMap();
+         });
+      </script>
+      <script src="WorldAvg_json.js"></script>
+      <script src="icat_json.js"></script>
+      <script src="icat_js.js"></script>
+   </body>
+</html>

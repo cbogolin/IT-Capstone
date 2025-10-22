@@ -1,0 +1,187 @@
+html,
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #F6F6F6;
+    color: #1D1D1B;
+    height: calc(100% - 55px);
+    position: relative;
+}
+
+.mainWrapper {
+    height: 100%;
+}
+
+.row {
+    height: 100%;
+}
+
+.nav-tabs {
+    width: 100%;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+.navbar {
+    background: #FFFFFF;
+    padding-left: 10px;
+    padding-right: 0;
+    box-shadow: 0 2px 4px 0 rgba(248, 248, 248, 0.50);
+    -webkit-box-shadow: 0 2px 4px 0 rgba(228, 228, 228, 0.5);
+    z-index: 9;
+}
+
+.navbar-brand {
+    color: #1D1D1B;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.nav-item {
+    margin-right: 25px;
+}
+
+.sidebar {
+    background: white;
+    height: calc(100vh - 55px);
+    padding: 0 !important;
+}
+
+.sidebar .measure {
+    padding: 10px;
+    border: 1px solid #F3F3F3;
+    height: 100%;
+}
+
+.measure:hover,
+.main-category:hover {
+    cursor: pointer;
+    background: rgb(209, 229, 255);
+}
+
+.sidebar p {
+    font-size: 11px;
+    color: #38A3FF;
+    width: 105px;
+    padding: 5px;
+}
+
+.main-category {
+    padding: 20px;
+}
+
+.main-category p {
+    color: #FF386B;
+    font-size: 14px;
+    width: 100%;
+}
+
+.education,
+.democracy {
+    width: 60px !important;
+}
+
+.selectCountryDropdown {
+    margin-top: 25px;
+    margin-right: 25px;
+    padding: 7px;
+    color: #afafaf;
+    background: white;
+    border: 1px solid #afafaf;
+}
+
+svg>g>rect {
+    fill: none;
+}
+
+
+/* Styles for modal and all content within modal. Whoever is editing this may have
+to experiment a little to style it */
+
+.modal {
+    /* background, modal size, margins, etc. */
+    position: fixed;
+    height: 900px;
+    width: 1000px;
+    margin: 20px auto;
+}
+
+.modal-content {
+    border-radius: 0px;
+    border: 0px;
+}
+
+.modal-header {
+    color: #1D1D1B;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Navbar styles */
+
+#myModal ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#myModal li {
+    float: left;
+}
+
+#myModal li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+/* Change the link color to #111 (black) on hover */
+
+#myModal li a:hover {
+    background-color: #111;
+}
+
+#myModal select {
+    margin-top: 0;
+}
+
+
+/*Modal overview table*/
+
+#RegionLabel {
+    text-align: center;
+}
+
+table {
+    font-family: 'Raleway', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 6px;
+    border: none !important;
+    padding-left: 20px;
+}
+
+.overviewHeader {
+    font-weight: bold;
+    text-align: center;
+}
+
+.overviewCategoryDivider {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+}
