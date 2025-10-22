@@ -85,7 +85,7 @@
     var encodedQuery = encodeURIComponent(query);
     url.push(encodedQuery);
     url.push('&callback=drawMap');
-    url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+    url.push('&key=key');
     script.src = url.join('');
     var body = document.getElementsByTagName('body')[0];
     body.appendChild(script);
@@ -139,3 +139,4 @@
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
+
