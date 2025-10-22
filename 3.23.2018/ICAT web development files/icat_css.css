@@ -1,0 +1,131 @@
+body {
+  font-family: 'Open Sans';
+}
+
+.navbarLogo {
+  font-size: 25px;
+  font-family: "Raleway";
+  font-weight: bold;
+}
+
+#subLogo {
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.selectCountryDropdown {
+  font-size: 12px;
+  border-radius: 5px;
+  font-family: "Raleway";
+}
+
+#icatMap {
+}
+
+/* Styles for everything within the 'MeasureDiv', including icons, descriptions, labels, and whatever else y'all wanna add*/
+
+#chooseMeasureDiv {
+  background-color:lightblue;
+  padding: 5px;
+}
+
+#measureDescriptionDiv {
+  padding: 15px;
+  min-height: 70px;
+}
+
+.measureDescription {
+  display:none;
+}
+
+#measureLabel {
+  font-size: 11px;
+}
+
+.row {
+  padding-bottom: 10px;
+}
+
+#icon {
+  height: 50px;
+  width: 50px;
+}
+
+#icon:hover {
+    background-color: yellow;
+}
+
+/* Styles for modal and all content within modal. Whoever is editing this may have
+to experiment a little to style it */
+
+.modal { /* background, modal size, margins, etc. */
+  position: fixed;
+  height: 700px;
+  width: 1000px;
+  margin: 20px auto;
+
+}
+
+.modal-content {
+  border-radius: 0px;
+  border: 0px;
+
+}
+
+#countryFlag {
+  height: 70px;
+  width: 130px;
+}
+
+/* Navbar styles */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.mapSizerDiv {
+  width: 85%;
+}
+
+
+/*Modal overview table*/
+table {
+    font-family: 'Calibri Light', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.overviewHeader {
+  font-weight: bold; 
+}
+
+tr:nth-child(even) {
+    background-color: lightblue;
+}
