@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="icat_json.js"></script>
+    <script>
+        $(document).ready(function() {
+            //slider JS
+            //New Value Slider
+            var nvslider = $("#newValue");
+            var nvnum = $("#nvNum");
+            nvnum.val(nvslider.val()); // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider handle)
+            nvslider.change(function(){
+                nvnum.val(nvslider.val());
+            });
+            nvnum.change(function(){
+                nvslider.val(nvnum.val());
+            });
+
+            //Delta Time Slider
+            var dtslider = $("#deltaTime");
+            var dtnum = $("#dtNum");
+            dtnum.val(dtslider.val()); // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider handle)
+            dtslider.change(function(){
+                dtnum.val(dtslider.val());
+            });
+            dtnum.change(function(){
+                dtslider.val(dtnum.val());
+            });
+            
+            //Simulation Script {should probably be in a different script}
+            var results = $("#results");
+            function sim (){
+                //replace with the current value of the country and measure selected
+                var nv = nvnum.val(); //new value
+                var dt = dtnum.val(); //years
+                
+                //new stuff going here
+                //Josh and Tanner's Stuff
+                //function runSimulation(years){
+                //var cv = 70.4
+                //var nv = 65;
+                //var gdp = 617.8899724; //need this to be dynamic
+                var gr = (nv - cv)/dt;
+                var c = -0.48470; //need this to be dynamic I think
+                var cgr = (1+(c*gr));
+                var mi1 = gdp*cgr; //first year
+                var miarray = [gdp, mi1];
+                
+                //debugging
+                results.append(`cv = ${cv} <br>`);
+                results.append(`nv = ${nv} <br>`);
+                results.append(`gr = ${gr} <br>`);
+                results.append(`c = ${c} <br>`);
+                results.append(`cgr = ${cgr} <br>`);
+                results.append(`mi1 = ${mi1} <br>`);
+                results.append(`miarray[0] = ${miarray[0]} <br>`);
+                
+                //equation stuff
+                for (i = 2; i <= dt; i++)
+                {
+
+                    miarray.push(miarray[i-1]*cgr);
+                    
+
+                }
+
+                for (i = 0; i < miarray.length; i++){
+                    var printednum = Math.round(miarray[i]);
+                    results.append(`year ${i}: ${printednum} <br>`);
+                }
+
+
+
+
+
+
+
+
+                //old stuff here
+                //var cveq = cv * dt;
+                //var nveq = nv * dt;
+
+                //results.append(`If kept at ${cv} after ${dt} years: ${cveq}<br>
+                //If changed to ${nv} after ${dt} years: ${nveq}<br>`);
+            }
+
+            $("#simButton").click(sim);
+
+            //selecting and getting info for countries
+            var select = $("#select");
+
+            $.each(countries, function(key, value) {
+                var opt = `<option>${value["Country Name"]}</option>`;
+                select.append(opt);
+            });
+
+            select.change(function(){
+                var opval = $(this).val();
+
+                let countryObject = countries.find(country => country["Country Name"] === opval);
+                results.append(countryObject["lnChldMort"] + "<br>");
+                results.append(opval + "<br>");
+                $("#cv").html(countryObject["lnChldMort"]); 
+                cv = countryObject["lnChldMort"];
+                gdp = countryObject["y"]; //gdp i think
+                results.append("GDP = " + gdp + "<br>");
+                $("#ccn").html(countryObject["Country Name"]);
+                $("#cpm").html("lnChldMort");
+
+            });
+
+            //selecting which policy to use
+            var policy = $("#policy");
+            $.getJSON("policies.json", function(json){
+                policy.append(`<option>${json[0].abbreviation}</option>`);
+            });
+            //var policies = 
+            //var polObj = JSON.parse(policies);
+            
+            
+
+
+        });
+    </script>
+    <style>
+        body {
+            background-color: rgb(114, 114, 114);
+        }
+        p {
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 5%;
+        }
+
+        .slidecontainer {
+            width: 98%; /* Width of the outside container */
+            margin: auto;
+        }
+
+        
+        /* The slider itself */
+        .slider {
+            -webkit-appearance: none;  /* Override default CSS styles */
+            appearance: none;
+            width: 100%; /* Full-width */
+            height: 25px; /* Specified height */
+            background: #d3d3d3; /* Grey background */
+            outline: none; /* Remove outline */
+            opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+
+        /* Mouse-over effects */
+        .slider:hover {
+            opacity: 1; /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Override default look */
+            appearance: none;
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: #4CAF50; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: #4CAF50; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+        .box {
+            display: block;
+            border-style: solid;
+            border-width: 4px;
+            border-color: cornflowerblue;
+            background: rgb(230, 230, 230);
+            margin-top: 40px;
+            margin-right: 20%;
+            margin-left: 20%;
+            padding: 10px;
+        }
+        .sliderNum {
+            font-size: 24px;
+            color: orangered;
+            font-weight: bold;
+            text-align: center;
+        }
+        #results {
+            background-color: aquamarine;
+        }
+        #simButton {
+            font-size: 24px;
+            color:orangered;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <select id=select></select>
+    <select id=policy></select>
+    <div class="box">
+        Current Policy Measurement: [<span id=cpm>Current Policy Measurement</span>]
+        <br>
+        Current Country Name: [<span id=ccn>Current Country Name</span>]
+        <br>
+        Current Value: [<span id=cv>current value</span>]
+        <br><br>
+        <div class="slidecontainer">
+            <label>New Value</label><input type="range" min="1" max="100" value="50" class="slider" id="newValue">
+            <input type="text" id="nvNum" class="sliderNum" size="2">
+            <br><br><br>
+            <label>Delta Time (years)</label><input type="range" min="1" max="30" value="10" class="slider" id="deltaTime">
+            <input type="text" id="dtNum" class="sliderNum" size="2">
+        </div>
+        <br>
+        <button type="button" id="simButton">Simulate!</button>
+        <p id="results"></p>
+    </div>
+</body>
+</html>
+<!-- TO DO: 
+    Make default country Afghanistan
+    Dropdown menu for selecting measurement    
+-->

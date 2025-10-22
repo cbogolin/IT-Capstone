@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Google Charts Test</title>
+    <meta charset="UTF-8">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //safe keeping
+            //https://developers.google.com/chart/interactive/docs/gallery/linechart
+            chart_div = $("#chart_div")[0];
+
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {
+                'packages': ['line']
+            });
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart);
+
+            // Callback that creates and populates a data table,
+            // instantiates the pie chart, passes in the data and
+            // draws it.
+            function drawChart() {
+
+                // Create the data table.
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Year');
+                data.addColumn('number', 'With Change');
+                data.addColumn('number', 'W/O Change');
+                deltaTime = 20; //years
+                with_change = [1, 3, 4, 3, 6, 7, 4, 8, 9, 4, 7, 9, 11, 13, 12, 14, 16, 17, 19, 21, 22]; //data example from change equation
+                without_change = [1, 1, 2, 3, 4, 3, 4, 4, 5, 5, 6, 6, 5, 5, 5, 6, 7, 8, 9, 5, 8]; //data example from unchanged equation
+                for (i = 0; i <= deltaTime; i++) {
+                    year = 2018 + i;
+                    yearString = '' + year;
+                    changeData = with_change[i];
+                    sameData = without_change[i];
+                    data.addRow([yearString, changeData, sameData]);
+                }
+                //['2018', 60, 60],
+                //['2019', 75, 63],
+                //['2020', 88, 67],
+                //['2021', 97, 72],
+                //['2022', 109, 80],
+                //['2023', 120, 85
+
+                //data.addColumn('number', 'Year');
+                // Set chart options
+                var options = {
+                    chart: {
+                        title: 'Economic Growth for Germany',
+                        subtitle: 'By GDP'
+                    },
+                    width: 900,
+                    height: 500
+                };
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.charts.Line(chart_div);
+                chart.draw(data, options);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!--Div that will hold the chart-->
+    <div id="chart_div"></div>
+</body>
