@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="icat_sim_json.js"></script>
+    <script>
+        $(document).ready(function() {
+            //Instantiate Variables
+            var currentAbbr = "FinInc";            
+            var policyNum = 0; 
+            var countryName = "Afghanistan";
+            var currentPolicy = "Banking Opportunities";
+            var cv = 9.96; 
+            var c = 0.0206676; 
+            var gdp = 617.89; 
+            var stdErr = 0.00672262;
+            var dt = 0;
+            var miarray = [0]; 
+            var llarray = [0]; 
+            var ularray = [0];
+
+            var results = $("#results");
+            
+            //New Value Slider
+            var nvslider = $("#newValue");
+            var nvnum = $("#nvNum");
+            nvnum.val(nvslider.val()); // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider or change the number)
+            nvslider.change(function(){
+                nvnum.val(nvslider.val());
+            });
+            nvnum.change(function(){
+                nvslider.val(nvnum.val());
+            });
+
+            //Delta Time Slider
+            var dtslider = $("#deltaTime");
+            var dtnum = $("#dtNum");
+            dtnum.val(dtslider.val()); // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider or change the number)
+            dtslider.change(function(){
+                dtnum.val(dtslider.val());
+            });
+            dtnum.change(function(){
+                dtslider.val(dtnum.val());
+            });
+            
+            //Simulation Script {should probably be in a different script}
+            function sim (){
+                if (cv == "N/A"){
+                    alert("This country does not have a value for this policy. Please pick another one.");
+                    return
+                }
+                //replace with the current value of the country and measure selected
+                var nv = nvnum.val(); //new value
+                dt = dtnum.val(); //years
+                var gr = (nv - cv)/dt;
+                var cgr = (1+(c*gr));
+                var mi_1 = gdp*cgr; //first year
+                miarray = [gdp, mi_1];
+
+                var ll = c - 1.96 * stdErr;
+                var ll_1 = gdp*(1+ll*gr);
+                llarray = [gdp, ll_1];
+
+                var ul = c + 1.96 * stdErr;
+                var ul_1 = gdp*(1+ul*gr);
+                ularray = [gdp, ul_1];
+                
+                //equation stuff
+                for (i = 2; i <= dt; i++)
+                {
+                    miarray.push(miarray[i-1]*cgr); 
+                    llarray.push(llarray[i-1]*(1+ll*gr));
+                    ularray.push(ularray[i-1]*(1+ul*gr)); 
+                }
+                
+                //debugging
+                for (i = 0; i < miarray.length; i++){
+                    var printednum = Math.round(miarray[i]);
+                    results.append(`year ${i}: ${printednum} <br>`);
+                }
+                drawChart();
+            }
+
+            $("#simButton").click(sim);
+
+            //selecting and getting info for countries
+            var select = $("#select");
+
+            $.each(countries, function(key, value) {
+                var opt = `<option>${value["Country Name"]}</option>`;
+                select.append(opt);
+            });
+
+            select.change(function(){
+                var opval = $(this).val();
+                countryName = opval;
+                let countryObject = countries.find(country => country["Country Name"] === opval);
+                results.append(countryObject[currentAbbr] + "<br>");
+                results.append(opval + "<br>");
+                 
+                cv = Number(countryObject[currentAbbr]);
+                if (isNaN(cv)){
+                    cv = 'N/A';
+                }     
+                $("#cv").html(cv);
+                gdp = Number(countryObject["y"]);
+                results.append("GDP = " + gdp + "<br>");
+                results.append("abbr = " + currentAbbr + "<br>");
+                $("#ccn").html(countryName);
+                c = json.policies[policyNum].coefficient;
+
+            });
+
+            //selecting which policy to use
+            var policy = $("#policy");
+            var json = {
+                "policies": [
+                {
+                    "abbreviation": "FinInc",
+                    "coefficient": 0.0206676,
+                    "stdErr":0.00672262,
+                    "description": "People 15 years and older with access to bank accounts in %",
+                    "formalName": "Banking Opportunities"
+                },
+                {
+                    "abbreviation": "GPI",
+                    "coefficient": 0.0306441,
+                    "stdErr":0.0190226,
+                    "description": "Gender parity index for youth literacy rate is the ratio of females to males ages 15-24 who can both read and write with understanding a short simple statement about their everyday life",
+                    "formalName": "Gender Equality"
+                },
+                {
+                    "abbreviation": "FemLit",
+                    "coefficient": 0.0174614,
+                    "stdErr":0.00870824,
+                    "description": "Adult female literacy rate is the percentage of people ages 15 and above who can both read and write with understanding a short simple statement about their everyday life",
+                    "formalName": "Female Education"
+                },
+                {
+                    "abbreviation": "ChldMort",
+                    "coefficient": -0.0127751,
+                    "stdErr":0.00170956,
+                    "description": "Under-five mortality rate is the probability per 1,000 that a newborn baby will die before reaching age five, if subject to age-specific mortality rates of the specified year",
+                    "formalName": "Child Health"
+                },
+                {
+                    "abbreviation": "Waste",
+                    "coefficient": -0.00329891,
+                    "stdErr":0.00942427,
+                    "description": "Prevalence of wasting is the proportion of children under age 5 whose weight for height is more than two standard deviations below the median for the international reference population ages 0-59",
+                    "formalName": "Food Security"
+                },
+                {
+                    "abbreviation": "MSExpShr",
+                    "coefficient": 0.0135893,
+                    "stdErr":0.00172017,
+                    "description": "Manufactures and Services Export Share in % of GDP",
+                    "formalName": "International Economic Diversification"
+                },
+                {
+                    "abbreviation": "inflation",
+                    "coefficient": -0.028909,
+                    "stdErr":0.00166393,
+                    "description": "Inflation as measured by the consumer price index reflects the annual percentage change in the cost to the average consumer of acquiring a basket of goods and services that may be fixed or changed at specified intervals, such as yearly. The Laspeyres formula is generally used.",
+                    "formalName": "Price Stability"
+                },
+                {
+                    "abbreviation": "Polity2",
+                    "coefficient": 0.0024174,
+                    "stdErr":0.00146253,
+                    "description": "Index between -10 and +10 with negative scores indicating autocracies, scores between 1 and 6 describing anocracies, and scores of 7 and greater identifying democracies",
+                    "formalName": "Democracy"
+                },
+                {
+                    "abbreviation": "GINI",
+                    "coefficient": -0.0480946,
+                    "stdErr":0.0148802,
+                    "description": "Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution. A Lorenz curve plots the cumulative percentages of total income received against the cumulative number of recipients, starting with the poorest individual or household. The Gini index measures the area between the Lorenz curve and a hypothetical line of absolute equality, expressed as a percentage of the maximum area under the line. Thus a Gini index of 0 represents perfect equality, while an index of 100 implies perfect inequality.",
+                    "formalName": "Distribution of Income"
+                },
+                {
+                    "abbreviation": "MedPov",
+                    "coefficient": -0.0148541,
+                    "stdErr":0.00299146,
+                    "description": "Poverty headcount ratio at $3.20 a day is the percentage of the population living on less than $3.20 a day at 2011 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+                    "formalName": "Fight against Poverty"
+                },
+                {
+                    "abbreviation": "NRR",
+                    "coefficient": 0.00561349,
+                    "stdErr":0.0016623,
+                    "description": "Total natural resources rents are the sum of oil rents, natural gas rents, coal rents (hard and soft), mineral rents, and forest rents.",
+                    "formalName": "Environmental Sustainability"
+                },
+                {
+                    "abbreviation": "ImpWat",
+                    "coefficient": 0.126164,
+                    "stdErr":0.0110008,
+                    "description": "Access to an improved water source refers to the percentage of the population using an improved drinking water source. The improved drinking water source includes piped water on premises (piped household water connection located inside the user’s dwelling, plot or yard), and other improved drinking water sources (public taps or standpipes, tube wells or boreholes, protected dug wells, protected springs, and rainwater collection).",
+                    "formalName": "Environmental Safety"
+                }
+                ]
+            }
+            for (i = 0; i < 12; i++){
+                policy.append(`<option id="${i}">${json.policies[i].formalName}</option>`);
+            }
+            policy.change(function(){
+                //currentPolicy = $(this).val();
+                let countryObject = countries.find(country => country["Country Name"] === countryName);
+                policyNum = $(this).children(":selected").attr("id");
+                currentAbbr = json.policies[policyNum].abbreviation;
+                currentPolicy = json.policies[policyNum].formalName;
+                currentDescription = json.policies[policyNum].description;
+                stdErr = json.policies[policyNum].stdErr;
+                $("#description").html(currentDescription);
+                $("#cpm").html(currentPolicy);
+                c = json.policies[policyNum].coefficient;
+                cv = Number(countryObject[currentAbbr]);
+                if (isNaN(cv)){
+                    cv = 'N/A';
+                }
+                $("#cv").html(cv);
+
+            });
+
+            chart_div = $("#chart_div")[0];
+
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {
+                'packages': ['line']
+            });
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart);
+
+            // Callback that creates and populates a data table,
+            // instantiates the chart, passes in the data and
+            // draws it.
+            
+            function drawChart() {
+
+                // Create the data table.
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Year');
+                data.addColumn('number', 'Mean Income');
+                data.addColumn('number', 'Income Status Quo');
+                data.addColumn('number', 'LL Income');
+                data.addColumn('number', 'UL Income');
+                deltaTime = dt; //years
+
+                for (i = 0; i <= deltaTime; i++) {
+                    year = 2018 + i;
+                    yearString = '' + year;
+                    meanIncome = miarray[i];
+                    llIncome = llarray[i];
+                    ulIncome = ularray[i];
+                    data.addRow([yearString, meanIncome, gdp, llIncome, ulIncome]);
+                }
+                
+                // Set chart options
+                var options = {
+                    chart: {
+                        title: `Economic Growth for ${countryName} w/ ${currentPolicy} change`,
+                        subtitle: 'By GDP'
+                    },
+                    width: 800,
+                    height: 450
+                };
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.charts.Line(chart_div);
+                chart.draw(data, options);
+            }
+
+        });
+    </script>
+    <style>
+        body {
+            background-color: rgb(114, 114, 114);
+        }
+        p {
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 5%;
+        }
+
+        .slidecontainer {
+            width: 98%; /* Width of the outside container */
+            margin: auto;
+        }
+
+        
+        /* The slider itself */
+        .slider {
+            -webkit-appearance: none;  /* Override default CSS styles */
+            appearance: none;
+            width: 100%; /* Full-width */
+            height: 25px; /* Specified height */
+            background: #d3d3d3; /* Grey background */
+            outline: none; /* Remove outline */
+            opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+
+        /* Mouse-over effects */
+        .slider:hover {
+            opacity: 1; /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Override default look */
+            appearance: none;
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: #4CAF50; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: #4CAF50; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+        .box {
+            display: block;
+            border-style: solid;
+            border-width: 4px;
+            border-color: cornflowerblue;
+            background: rgb(230, 230, 230);
+            margin-top: 40px;
+            margin-right: 20%;
+            margin-left: 20%;
+            padding: 10px;
+        }
+        .sliderNum {
+            font-size: 24px;
+            color: orangered;
+            font-weight: bold;
+            text-align: center;
+        }
+        #results {
+            background-color: aquamarine;
+            display: none;
+        }
+        #simButton {
+            font-size: 24px;
+            color: orangered;
+            font-weight: bold;
+            text-align: center;
+        }
+        #ccn, #cpm, #cv, #description {
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <select id=select></select>
+    <select id=policy></select>
+    <div class="box">
+        Current Policy Measurement: [<span id=cpm>Banking Opportunities</span>]
+        <br>
+        Current Country Name: [<span id=ccn>Afghanistan</span>]
+        <br>
+        Current Value: [<span id=cv>9.96</span>]
+        <br>
+        Description: <span id=description>People 15 years and older with access to bank accounts in %</span>
+        <br><br>
+        <div class="slidecontainer">
+            <label>New Value</label><input type="range" min="1" max="100" value="50" class="slider" id="newValue">
+            <input type="text" id="nvNum" class="sliderNum" size="2">
+            <br><br><br>
+            <label>Delta Time (years)</label><input type="range" min="1" max="30" value="10" class="slider" id="deltaTime">
+            <input type="text" id="dtNum" class="sliderNum" size="2">
+        </div>
+        <br>
+        <button type="button" id="simButton">Evaluate</button>
+        <p id="results"></p>
+        <div id="chart_div"></div>
+    </div>
+</body>
+</html>
+<!-- TO DO: 
+    
+-->

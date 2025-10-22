@@ -1,0 +1,356 @@
+html,
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #F6F6F6;
+    color: #1D1D1B;
+    min-height: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.mainWrapper {
+    height: calc(100% - 55px);
+}
+
+.main-content-area {
+    min-height: 100%;
+    height: 100%;
+}
+
+.nav-tabs {
+    width: 100%;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+.navbar {
+    width: 100%;
+    background: #FFFFFF;
+    padding-left: 10px;
+    padding-right: 0;
+    box-shadow: 0 2px 4px 0 rgba(248, 248, 248, 0.50);
+    -webkit-box-shadow: 0 2px 4px 0 rgba(228, 228, 228, 0.5);
+    z-index: 9;
+    position: relative;
+}
+
+.navbar > .text-center {
+    display: inline-block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    position: absolute;
+    top: 15px;
+    font-weight: 700;
+}
+
+.navbar-brand {
+    display: inline-block !important;
+    color: #1D1D1B;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    display: inline-block !important;
+    position: absolute;
+    right: 25px;
+}
+
+.nav-item {
+    margin-right: 25px;
+    display: inline;
+}
+
+.nav-link {
+    display: inline;
+}
+
+.sidebar {
+    background: white;
+    min-height:100%;
+    height: 100%;
+    padding: 0 !important;
+}
+
+.sidebar .measure {
+    padding: 10px;
+    border: 1px solid #F3F3F3;
+    height: 100%;
+}
+
+.measure:hover {
+    cursor: pointer;
+    background: rgb(209, 229, 255);
+}
+
+.measure-active {
+    background: rgb(209, 229, 255);
+}
+
+.sidebar p {
+    font-size: 11px;
+    color: #38A3FF;
+    width: 105px;
+    padding: 5px;
+}
+
+.main-category {
+    padding: 20px;
+}
+
+.main-category p {
+    color: #FF386B;
+    font-size: 14px;
+    width: 100%;
+}
+
+.education,
+.democracy {
+    width: 60px !important;
+}
+
+.map-area {
+    position: relative;
+    width: 100%;
+}
+
+.mapSizerDiv {
+    margin-top: 25px;
+}
+
+#meaureLabelHeadingText {
+    display: inline-block;
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: 12px;
+}
+
+.form-inline {
+    position: absolute;
+    display: inline-block !important;
+    text-align: right;
+    right: 0;
+    top: 0;
+}
+
+.selectCountryDropdown {
+    margin-top: 25px;
+    margin-right: 25px;
+    padding: 7px;
+    color: #afafaf;
+    background: white;
+    border: 1px solid #afafaf;
+}
+
+svg>g>rect {
+    fill: none;
+}
+
+
+/* Styles for modal and all content within modal. Whoever is editing this may have
+to experiment a little to style it */
+
+.modal {
+    /* background, modal size, margins, etc. */
+    position: fixed;
+    height: 900px;
+    width: 1000px;
+    margin: 20px auto;
+}
+
+.modal-content {
+    border-radius: 0px;
+    border: 0px;
+}
+
+.modal-header {
+    color: #1D1D1B;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Navbar styles */
+
+#myModal ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#myModal li {
+    float: left;
+}
+
+#myModal li a {
+    display: block;
+    color: #38A3FF;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+/* Change the link color to #111 (black) on hover */
+
+#myModal li a:hover {
+    background-color: #111;
+}
+
+#myModal select {
+    margin-top: 0;
+}
+
+
+/*Modal overview table*/
+
+#RegionLabel {
+    text-align: center;
+}
+
+table {
+    font-family: 'Raleway', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 6px;
+    border: none !important;
+    padding-left: 20px;
+}
+
+.overviewHeader {
+    font-weight: bold;
+    padding: 6px 10px !important;
+}
+
+.overviewCategoryDivider {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#myModal {
+    margin-top: 50px !important;
+    height: 95% !important;
+    width: 95% !important;
+}
+
+.modal-content {
+    background: #F6F6F6 !important;
+}
+
+.modal-header > .nav {
+    background: white !important;
+    padding: 10px 5px !important;
+}
+
+.modalclosebtn {
+    background: none !important;
+    margin-top: 5px;
+}
+
+#RegionLabel {
+    padding: 0 10px;
+    margin-bottom: 40px;
+}
+
+table {
+    border-collapse: collapse !important;
+}
+
+.countryRegionHeader {
+    padding: 15px;
+}
+
+.countryRegionHeader > .countryName {
+    font-size: 36px !important;
+}
+
+.modal-content > table, .modal-content > table > th {
+    text-align: left;
+}
+
+.table-header {
+}
+
+tbody:nth-child(even) {
+    background: #dcedf3;
+}
+
+/* tbody:nth-child(odd) {
+    background: #ececec;
+} */
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background-color: none !important;
+    border-color: none !important;
+}
+
+.nav-tabs .nav-link {
+    border: none !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+/* CSS for Simulation */
+
+#sim {
+    padding: 20px;
+}
+
+.sim-select, .slidecontainer{
+    display: block;
+    font-size: 0.8em;
+}
+
+.sim-label, {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-size: 0.8em;
+}
+
+.box {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+strong {
+    font-weight: bold !important;
+}
+
+#simButton {
+    padding: 6px 12px;
+    border-radius: 50px;
+}
+
+#chartDiv {
+    background: white;
+}
+
+.results-text {
+    margin-top: 30px;
+    width: 50%;
+    padding: 20px;
+    font-size: 13px;
+    color: grey;
+    border: 1px solid grey;
+    line-height: 20px;
+}
+
+.sliders {
+    padding: 10px;
+}
+
+.sliders > label {
+    display: block !important;
+}

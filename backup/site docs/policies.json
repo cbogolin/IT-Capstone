@@ -1,0 +1,88 @@
+{
+    "policies": [
+      {
+        "abbreviation": "FinInc",
+        "coefficient": 0.0206676,
+        "stdErr":0.00672262,
+        "description": "People 15 years and older with access to bank accounts in %",
+        "formalName": "Banking Opportunities"
+      },
+      {
+        "abbreviation": "GPI",
+        "coefficient": 0.0306441,
+        "stdErr":0.0190226,
+        "description": "Gender parity index for youth literacy rate is the ratio of females to males ages 15-24 who can both read and write with understanding a short simple statement about their everyday life",
+        "formalName": "Gender Equality"
+      },
+      {
+        "abbreviation": "FemLit",
+        "coefficient": 0.0174614,
+        "stdErr":0.00870824,
+        "description": "Adult female literacy rate is the percentage of people ages 15 and above who can both read and write with understanding a short simple statement about their everyday life",
+        "formalName": "Female Education"
+      },
+      {
+        "abbreviation": "ChldMort",
+        "coefficient": -0.0127751,
+        "stdErr":0.00170956,
+        "description": "Under-five mortality rate is the probability per 1,000 that a newborn baby will die before reaching age five, if subject to age-specific mortality rates of the specified year",
+        "formalName": "Child Health"
+      },
+      {
+        "abbreviation": "Waste",
+        "coefficient": -0.00329891,
+        "stdErr":0.00942427,
+        "description": "Prevalence of wasting is the proportion of children under age 5 whose weight for height is more than two standard deviations below the median for the international reference population ages 0-59",
+        "formalName": "Food Security"
+      },
+      {
+        "abbreviation": "MSExpShr",
+        "coefficient": 0.0135893,
+        "stdErr":0.00172017,
+        "description": "Manufactures and Services Export Share in % of GDP",
+        "formalName": "International Economic Diversification"
+      },
+      {
+        "abbreviation": "inflation",
+        "coefficient": -0.028909,
+        "stdErr":0.00166393,
+        "description": "Inflation as measured by the consumer price index reflects the annual percentage change in the cost to the average consumer of acquiring a basket of goods and services that may be fixed or changed at specified intervals, such as yearly. The Laspeyres formula is generally used.",
+        "formalName": "Price Stability"
+      },
+      {
+        "abbreviation": "Polity2",
+        "coefficient": 0.0024174,
+        "stdErr":0.00146253,
+        "description": "Index between -10 and +10 with negative scores indicating autocracies, scores between 1 and 6 describing anocracies, and scores of 7 and greater identifying democracies",
+        "formalName": "Democracy"
+      },
+      {
+        "abbreviation": "GINI",
+        "coefficient": -0.0480946,
+        "stdErr":0.0148802,
+        "description": "Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution. A Lorenz curve plots the cumulative percentages of total income received against the cumulative number of recipients, starting with the poorest individual or household. The Gini index measures the area between the Lorenz curve and a hypothetical line of absolute equality, expressed as a percentage of the maximum area under the line. Thus a Gini index of 0 represents perfect equality, while an index of 100 implies perfect inequality.",
+        "formalName": "Distribution of Income"
+      },
+      {
+        "abbreviation": "MedPov",
+        "coefficient": -0.0148541,
+        "stdErr":0.00299146,
+        "description": "Poverty headcount ratio at $3.20 a day is the percentage of the population living on less than $3.20 a day at 2011 international prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+        "formalName": "Fight against Poverty"
+      },
+      {
+        "abbreviation": "NRR",
+        "coefficient": 0.00561349,
+        "stdErr":0.0016623,
+        "description": "Total natural resources rents are the sum of oil rents, natural gas rents, coal rents (hard and soft), mineral rents, and forest rents.",
+        "formalName": "Environmental Sustainability"
+      },
+      {
+        "abbreviation": "ImpWat",
+        "coefficient": 0.126164,
+        "stdErr":0.0110008,
+        "description": "Access to an improved water source refers to the percentage of the population using an improved drinking water source. The improved drinking water source includes piped water on premises (piped household water connection located inside the user’s dwelling, plot or yard), and other improved drinking water sources (public taps or standpipes, tube wells or boreholes, protected dug wells, protected springs, and rainwater collection).",
+        "formalName": "Environmental Safety"
+      }
+    ]
+  }
